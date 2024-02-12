@@ -1,6 +1,7 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include "keys_fi_mac.h"
 
 / {
   chosen {
@@ -16,44 +17,90 @@
                 default_layer {
                         label = "QWERTY";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+// |  ESC |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  |  Å   |
+// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  Ö  |  Ä   |
+// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  -  | SHFT |
+//                    | GUI |␣/NAV|↹/NUM|   |↩/FUN|⌫/SYM|ALTGR|
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp ESC
-                  &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
-                        >;
-                };
-                lower_layer {
-                        label = "NUMBER";
-// -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp TAB    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans         &trans   &trans   &trans &trans    &trans &trans
-                          	        &kp LGUI     &trans       &kp SPACE      &kp RET  &trans   &kp RALT
+   &kp ESC   &kp FI_Q &kp FI_W &kp FI_E &kp FI_R &kp FI_T   &kp FI_Y &kp FI_U &kp FI_I    &kp FI_O   &kp FI_P    &kp FI_ARNG
+   &kp LCTRL &kp FI_A &kp FI_S &kp FI_D &kp FI_F &kp FI_G   &kp FI_H &kp FI_J &kp FI_K    &kp FI_L   &kp FI_ODIA &kp FI_ADIA
+   &kp LSHFT &kp FI_Z &kp FI_X &kp FI_C &kp FI_V &kp FI_B   &kp FI_N &kp FI_M &kp FI_COMM &kp FI_DOT &kp FI_MINS &kp RSHFT
+                           &kp LGUI &lt 1 SPACE &lt 3 TAB   &lt 5 RET &lt 2 BSPC &kp RALT
                         >;
                 };
 
-                raise_layer {
-                        label = "SYMBOL";
+                nav_layer {
+                        label = "NAV";
 // -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  \  |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
+// |      |VOL- |VOL+ |SS-3 |SS-4 |     |   | PGUP| HOME|  UP | END | INS |      |
+// |      |CTRL | ALT | GUI |SHFT |     |   | PGDN| LEFT| DOWN| RGHT| DEL |      |
+// |      |UNDO | CUT |COPY |PSTE |     |   |     |     |     |     |     |      |
+//                    |     |(NAV)|  ↹  |   |  ↩  |  ⌫  |ALTGR|
                         bindings = <
-   &kp  TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp STAR &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans   &trans &trans   &trans   &trans      &kp MINUS &kp EQUAL &kp LBKT &kp RBKT &kp BSLH &kp GRAVE
-   &kp LSHFT &trans   &trans &trans   &trans   &trans      &kp UNDER &kp PLUS  &kp LBRC &kp RBRC &kp PIPE &kp TILDE
-                    	     &kp LGUI &trans   &kp SPACE   &kp RET   &trans    &kp RALT
+   &none &kp C_VOL_DN &kp C_VOL_UP &kp LS(LG(FI_3)) &kp LS(LG(FI_4)) &none   &kp PG_UP &kp HOME &kp UP   &kp END   &kp INS &none
+   &none &kp LCTRL    &kp LALT     &kp LGUI         &kp LSHFT        &none   &kp PG_DN &kp LEFT &kp DOWN &kp RIGHT &kp DEL &none
+   &none &kp LG(FI_Z) &kp LG(FI_X) &kp LG(FI_C)     &kp LG(FI_V)     &none   &none     &none    &none    &none     &none   &none
+                                                       &none &mo 1 &kp TAB   &kp RET &kp BSPC &kp RALT
+                        >;
+                };
+
+                sym_layer {
+                        label = "SYM";
+// -----------------------------------------------------------------------------------------
+// |      |  !  |  "  |  #  |  €  |  %  |   |  &  |  /  |  (  |  )  |  =  |      |
+// |      |  ?  |  @  |  *  |  $  |  ^  |   |  ¨  |  '  |  {  |  }  |  +  |      |
+// |      | "|" |  <  |  >  |  ~  |  §  |   |  ´  |  \  |  [  |  ]  |  _  |      |
+//                    |     |TYPE |     |   |     |(SYM)|     |
+                        bindings = <
+   &none &kp FI_EXLM &kp FI_DQUO &kp FI_HASH &kp FI_EURO &kp FI_PERC   &kp FI_AMPR &kp FI_SLSH &kp FI_LPRN &kp FI_RPRN &kp FI_EQL  &none
+   &none &kp FI_QUES &kp FI_AT   &kp FI_ASTR &kp FI_DLR  &kp FI_CIRC   &kp FI_DIAE &kp FI_QUOT &kp FI_LCBR &kp FI_RCBR &kp FI_PLUS &none
+   &none &kp FI_PIPE &kp FI_LABK &kp FI_RABK &kp FI_TILD &kp FI_SECT   &kp FI_ACUT &kp FI_BSLS &kp FI_LBRC &kp FI_RBRC &kp FI_UNDS &none
+                    	             &none &kp LC(LG(FI_COMM)) &none   &none &mo 2 &none
+                        >;
+                };
+
+                num_layer {
+                        label = "NUM";
+// -----------------------------------------------------------------------------------------
+// |      |  /  |  7  |  8  |  9  |  -  |   |     |     |     |     |     |      |
+// |      |  *  |  4  |  5  |  6  |  +  |   |     | SHFT| GUI | ALT | CTRL|      |
+// |      |(PAD)|  1  |  2  |  3  | ENT |   |     |     |     |     |     |      |
+//                    |     |  0  |(NUM)|   |  ↩  |  ⌫  |ALTGR|
+                        bindings = <
+   &none &kp KP_DIVIDE   &kp FI_7 &kp FI_8 &kp FI_9 &kp KP_MINUS   &none &none     &none    &none    &none     &none
+   &none &kp KP_MULTIPLY &kp FI_4 &kp FI_5 &kp FI_6 &kp KP_PLUS    &none &kp LSHFT &kp LGUI &kp LALT &kp LCTRL &none
+   &none &tog 4          &kp FI_1 &kp FI_2 &kp FI_3 &kp KP_ENTER   &none &none     &none    &none    &none     &none
+                                            &none &kp FI_0 &mo 3   &kp RET &kp BSPC &kp RALT
+                        >;
+                };
+  
+                pad_layer {
+                        label = "PAD";
+// -----------------------------------------------------------------------------------------
+// |      |  /  |  7  |  8  |  9  |  -  |   |     |     |     |     |     |      |
+// |      |  *  |  4  |  5  |  6  |  +  |   |     |     |     |     |     |      |
+// |      |  ,  |  1  |  2  |  3  | ENT |   |     |     |     |     |     |      |
+//                    |     |  0  |(NUM)|   |  ↩  |  ⌫  |     |
+                        bindings = <
+   &none &kp KP_DIVIDE   &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_MINUS   &none &none &none &none &none &none
+   &none &kp KP_MULTIPLY &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_PLUS    &none &none &none &none &none &none
+   &none &kp KP_DOT      &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp KP_ENTER   &none &none &none &none &none &none
+                                             &none &kp KP_N0 &tog 4   &kp RET &kp BSPC &none
+                        >;
+                };
+  
+                fun_layer {
+                        label = "FUN";
+// -----------------------------------------------------------------------------------------
+// |      |BRI- |BRI+ |     |     |     |   | F12 |  F7 |  F8 |  F9 |     |      |
+// |      |CTRL | ALT | GUI |SHFT |     |   | F11 |  F4 |  F5 |  F6 |     |      |
+// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | F10 |  F1 |  F2 |  F3 |     |      |
+//                    |     |     |     |   |(FUN)|     |ALTGR|
+                        bindings = <
+   &none      &kp C_BRI_DN &kp C_BRI_UP &none        &none        &none          &kp F12 &kp F7 &kp F8 &kp F9 &none &none
+   &none      &kp LCTRL    &kp LALT     &kp LGUI     &kp LSHFT    &none          &kp F11 &kp F4 &kp F5 &kp F6 &none &none
+   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4   &kp F10 &kp F1 &kp F2 &kp F3 &none &none
+                                                             &none &none &none   &mo 4 &none &kp RALT
                         >;
                 };
         };
